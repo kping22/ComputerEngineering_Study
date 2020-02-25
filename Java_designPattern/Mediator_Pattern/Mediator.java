@@ -1,0 +1,6 @@
+package m_Pattern;
+
+public interface Mediator {
+    public abstract void createColleagues();
+    public abstract void colleagueChanged();
+}
