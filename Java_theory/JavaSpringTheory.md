@@ -77,9 +77,17 @@ MVC 패턴의 모든 흐름제어를 맡는다.
 ![image](https://user-images.githubusercontent.com/58617250/75850229-1a3c0580-5e2a-11ea-9890-a95811550086.png)
 - Filter와 Interceptor는 실행되는 시점이 다르다.
 Filter는 Web Application에 등록을 하고, Interceptor는 Spring의 Context에 등록을 한다. 컨트롤러에 들어가기전에 작업을 처리하기위해
-사용할 수 있다는 공통점이 있지만 호출되는 시점이 다르다.
-## 1) Filter는 Dispatcher servlet의 앞단에서 정보를 처리하고, Interceptor는 Dispatcher servlet에서 Handler(Controller)로 가기전에
-정보를 처리한다.
+사용할 수 있다는 공통점이 있지만 호출되는 시점이 다르다.  
+## 1) Filter는 Dispatcher servlet의 앞단에서 정보를 처리하고, Interceptor는 Dispatcher servlet에서 Handler(Controller)로 가기전에 정보를 처리한다.
 ## 2) 필터는 J2EE 표준 스펙에 정의되어 있는 기능이며, 인터셉터의 경우는 Spring Framework에서 자체적으로 제공하는 기능이라고 한다.
 - 정확히 어떤 상황에 어떤 기능을 사용해야 하는가에 대해서는 갑론을박이 많지만, 인코딩이나 보안 관련 처리와 같은 web app의 전역적으로 처리
 해야하는 로직은 필터로 구현하고, 클라이언트에서 들어오는 디테일한 처리(인증, 권한 등)에 대해서는 주로 인터셉터에서 처리하는듯함.
+
+# IoC란 무엇인가?
+- 인스턴스 생성의 제어를 개발자 본인이 아닌 다른 누군가에게 반환해 준다는 개념으로 여기서 말하는 다른 누군가는 Servlet과 같은 bean을 관리해주는 컨테이너이다.
+즉, IoC란 인스턴스의 생성부터 소멸까지 개발자가 아닌 컨테이너가 대신 관리해 준다는 것이다.
+
+# 스프링 부트와 스프링의 차이
+- 스프링 부트는 스프링 프레임워크를 사용하는 프로젝트를 간편하게 셋업할 수 있는 서브 프로젝트이다. 독립 컨테이너에서 동작할 수 있기 때문에
+embeded tomcat이 자동으로 실행됩니다. embeded contatiner에서 어플리케이션에서 실행시키기에는 다소 불안전하기 때문에 큰프로젝트에서는 사용
+하지 않는 것이 좋다.
