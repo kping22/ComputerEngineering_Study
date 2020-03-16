@@ -143,3 +143,38 @@ andrios.os.Message : 소비자 스레드에서 실행하는 메시지
 # intent Flag - FLAG_ACTIVITY_CLEAR_TOP, FLAG_ACTIVITY_SINGLE_TOP에 대해 설명
 FLAG_ACTIVITY_CLEAR_TOP - 동일한 액티비티가 쌓일 경우 Root Activity를 남기고 제거.
 FLAG_ACTIVITY_SINGLE_TO - 동일한 액티비티가 호출될 경우 1개로 취급.
+
+# 안드로이드 메모리 관리
+- 안드로이드에서 메모리 관리는 **GC를 이용해서 진행**됩니다.
+주기적으로 GC루트에서 모든 객체 참조에 대해 활성객체를 표시하고 활성되지 않은 객체는 메모리에서 지워집니다.
+**Strong Reference**와 **WeakReference**와 **Soft Reference**로 나눌 수 있습니다.
+
+## Strong Reference
+- Strong Reference는 new를 이용해 생성된 객체를 말합니다. 이 객체는 GC에서 무조건 제외되기 때문에 메모리 누수를 방지하기 위해서는
+이 참조를 주의해서 보아야합니다.
+
+## Soft Reference 
+- Soft Reference는 다음과 같이 객체에 Reference를 넘겨줌으로서 생성할 수 있습니다. 이 참조는 메모리가 충분하다면 GC에 의해서 수거되지
+않고, 메모리에 여유가 없다면 GC에 의해 수거됩니다.
+
+## Weak Reference
+- WeakReference는 SoftReference와 유사하지만 GC가 발생되기 전까지는 참조를 유지하고 GC가 발생하면 무조건 회수된다는 점에서 차이가 있습니다.
+이는 유용하게 쓰일 수 있는데, 짧은 시간, 자주 쓰일 수 있는 객체를 이용할 때 유용하게 사용될 수 있습니다.
+
+# 안드로이드의 메모리 구조
+- 안드로이드의 메모리 구조를 보면 램, 내장메모리, 외장메모리로 구분됩니다.
+## 램
+- 프로그램이 실행될 때 상주되는 공간입니다. 평상시에 하드에 저장되어있다가 런타임시에 차지되는 공간을 말합니다.
+## 내장메모리
+- 간단하게 컴퓨터의 하드디스크 같은 부분입니다.
+## 외장메모리
+- 하드디스크의 용량이 모자라 추가적인 용량을 채우기위한 외부 하드디스크입니다.
+
+# PendingIntent에 대해서 설명해주세요.
+- Intent를 직접 보내지 않고 다른 클래스에서 Intent를 위임해주기 위한 클래스입니다.
+보통 NotificationBar와 상호작용하는 어플리케이션을 작성할 때 사용됩니다.
+즉, 알림바, 알람, 다른앱에서 StartActivity,sendBroadCast, StartService가 실해오디게 하고 싶을 때 Intent를 PendingIntent에 담아서 호출
+합니다.
+
+# 안드로이드에서 액티비티간 통신
+- Intent를 이용해서 데이터를 주고 받는다. PutExtra, GetExtra 메소드를 이용합니다.
